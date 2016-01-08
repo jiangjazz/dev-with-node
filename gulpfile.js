@@ -9,6 +9,9 @@ var plumber = require('gulp-plumber');              //错误处理
 var rename    = require('gulp-rename');             // 重命名
 var notify    = require('gulp-notify');             // 提示 && 处理错误
 
+var babel = require('gulp-babel');                  //react jsx 语法检测
+var reactify = require('reactify');
+
 //基础地址   便于以后更改
 var path = {
     css: {
@@ -21,6 +24,11 @@ var path = {
         src : 'public/src/js/sms.min.js',
         srcT : 'public/src/js/**/*.js',//监控文件
         dest: 'public/dist/js',
+    },
+    jsx: {
+        src : 'public/src/jsx/jsx.min.js',
+        srcT: 'public/src/jsx/**/*.+(jsx|js)',
+        dest: 'public/dist/js'
     }
 };
 
@@ -50,7 +58,30 @@ gulp.task('js', function(){
     .pipe(notify({ message: 'js task complete' }));
 });
 
-
+// Jsx
+gulp.task('babel', function(){
+    var onError = function(err) {
+        notify.onError({
+            title: "Gulp",
+            subtitle: "Failure!",
+            message: "Error: <%= error.message %>",
+            sound: "Beep"
+        })(err);
+    };
+    return gulp.src( path.jsx.src )
+    //.pipe(cached('react')) //把所有东西放入缓存中，每次只编译修改过的文件
+    .pipe(plumber({ //发生错误时不会中断 gulp 的流程，同时触发 notify 消息提示
+      errorHandler: onError
+    }))
+    .pipe(babel())
+    .pipe(browserify({
+        insertGlobals : false,
+        debug : true,
+        transform: [reactify]
+    }))
+    .pipe(gulp.dest(path.jsx.dest))
+    .pipe(notify({ message: 'babel task complete' }));
+});
 
 
 //监听
@@ -59,4 +90,6 @@ gulp.task('watch', function(){
     gulp.watch(path.css.sass, ['css']);
     //js
     gulp.watch(path.js.srcT, ['js']);
+    //jsx
+    gulp.watch(path.jsx.srcT, ['babel']);
 });

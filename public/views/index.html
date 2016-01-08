@@ -2,101 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>欢迎</title>
+    <link rel='icon' href='dist/images/ico/ico.png' type='mage/x-ico' />
     <link rel="stylesheet" href="dist/css/style.min.css">
     <link rel="stylesheet" href="dist/css/animate.css">
 </head>
 <body>
 
-    <div class="content">
+    <div id="content">
 
     </div>
 
+    <script src="dist/js/react/react.js"></script>
+    <script src="dist/js/react/react-dom.js"></script>
+    <script src="dist/js/react/browser.min.js"></script>
+
+    <script src="dist/js/jsx.min.js"></script>
     <script src="dist/js/sms.min.js"></script>
-    <script>
-        /**
-         * [textOverEllipsis 超出规定长度的字符串，显示省略号]
-         * @param  {[type]}   str    [需要检测字符串的容器， 必填参数]
-         * @param  {[type]}   maxLen [最大长度， 必填参数]
-         * @param  {Function} fn     [回调函数，函数最后执行, 可选参数]
-         * @return {[type]}          [新的字符串]
-         */
-        /*function textOverEllipsis(ele, maxLen, fn){
-            if(!ele || !maxLen){
-                console.log('函数 textOverEllipsis 参数设置不正确');
-                return;
-            }
-            var str = ele.innerText,
-                len = str.length,
-                newStr;
-            newStr = (len > maxLen)? (str.substr(0, maxLen)+'...') : str;
-            fn && fn();
-            return newStr;
-        }
-
-        var check = document.getElementById('check');
-        var content = document.getElementById('content');
-
-        check.onclick = function(){
-            //do something
-
-            console.log(textOverEllipsis(content, 8));
-        };*/
-        /*function clone(json){
-            if(json.constructor == Object){
-                var res = {};
-                for(var name in json){
-                    console.log(name);
-                    res[name] = clone(json[name]);
-                }
-                console.log(json, res);
-                return res;
-            }else{
-                console.log(json, res);
-                return json;
-            }
-        }
-        var json = {
-            a: {
-                b: 1
-            }
-        };
-        var json2 = clone(json);
-        console.log(json2);*/
-
-        /**
-         * [check 对比两个对象是否完全一样]
-         * @param  {[type]} json1 [第一个对象]
-         * @param  {[type]} json2 [第二个对象]
-         * @return {[type]}       [返还code值，为0则完全相同]
-         */
-        function check(json1, json2){
-            var status = 0;
-            if(json1.constructor == Object && json2.constructor == Object){
-                for(var name in json1){
-                    console.log(name);
-                    if(!json2[name]){
-                        console.log('none');
-                        status +=1;
-                    }else{
-                        status += check(json1[name], json2[name]);
-                    }
-                }
-            }else if(json1.constructor !== Object && json2.constructor !== Object){
-                if(json1 === json2){
-                    status +=0;
-                }else{
-                    console.log('none1');
-                    status +=1;
-                }
-            }else{
-                console.log('none2');
-                status +=1;
-            }
-            return status;
-        }
-
-
-    </script>
 </body>
 </html>

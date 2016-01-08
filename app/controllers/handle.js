@@ -17,7 +17,7 @@ exports.home = function(req, res){
     page = fs.readFileSync('public/views/index.html');
     res.writeHead(200, {'content-Type': 'text/html'});
     res.write(page);
-    res.end('home');
+    res.end();
 };
 
 /**
@@ -29,5 +29,5 @@ exports.home = function(req, res){
 exports.other = function(req, res){
     console.log('other');
     res.writeHead(200, {'content-Type': 'text/plain'});
-    res.end('other');
+    res.end();
 };

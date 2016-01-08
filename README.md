@@ -1,6 +1,7 @@
 # dev-with-node
 
-#test v1.0.0  add 2016-1-8
+#test v1.0.0
+add 2016-1-8
 增加了VUE模块、react模块
 生产模块内（gulp内）增加了 babel、reactify模块，方便react语法检测、合并
 构建了基础的react环境

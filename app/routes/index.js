@@ -8,7 +8,7 @@ module.exports = function(app){
     app.get('/', handles.home)
         .post('/', handles.home);
 
-    while(demoIndex < 2){
+    while(demoIndex < 3){
         app.get('/demo'+demoIndex, demo['demo'+demoIndex])
         demoIndex ++;
     };

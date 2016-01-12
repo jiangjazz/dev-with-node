@@ -14,6 +14,7 @@ var page = function(){
     //具体产品
     var Product = React.createClass({
         render: function(){
+            console.log(this.state);
             return (
                 <div className="products">
                     <span>{this.props.product.name}</span>&nbsp;
@@ -63,22 +64,32 @@ var page = function(){
     });
     //搜索组件
     var SearchGroup = React.createClass({
+        getInitialState: function(){
+            return {
+                'filterText': '',
+                'inStockOnly': false
+            };
+        },
         render: function(){
             var categoryObj = {},
                 row = [];
             //按category分类,获得新的分组数据
             this.props.products.forEach(function(product) {
+                if(product.name.indexOf(this.state.filterText) === -1){
+                    return;
+                }
                 if (!categoryObj[product.category]) {
                     categoryObj[product.category] = [];
                 }
                 categoryObj[product.category].push(product);
             });
             for(var obj in categoryObj){
+                if(this.state.inStockOnly && categoryObj[obj].stocked){}
                 row.push(<ResultGroup key={obj} products={categoryObj[obj]}/>);
             }
             return (
                 <div className={this.props.class}>
-                    <SearchBar />
+                    <SearchBar filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} />
                     {row}
                 </div>
                 );

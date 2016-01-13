@@ -1,0 +1,11 @@
+@charset "utf-8";
+/*******************************
+ * 组件样式
+ */
+
+//标题组件
+.u-title{
+    padding: .5em 1em;
+    border-bottom: 1px solid $bc_normal;
+    font-size: $fs_titleNormal;
+}

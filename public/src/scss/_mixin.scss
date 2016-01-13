@@ -1,16 +1,20 @@
 @charset "utf-8";
 //皮肤
-$bg: #646262;  //背景色皮肤
-$bgHover: #ffffff;   //hover背景色
+$bg_body: #f1f1f1;   //内容背景色
+$bg_nav: #646262;  //背景色皮肤
+$bg_navHover: #ffffff;   //hover背景色
 
 //字号大小
-$f_normal: 12px;    //正常字号
-$f_h1: 32px;    //最大标题、logo等
-$f_nav: 20px;       //导航字号
+$fs_normal: 12px;    //正常字号
+$fs_h1: 32px;    //最大标题、logo等
+$fs_nav: 20px;       //导航字号
+$fs_titleNormal: 14px;   //普通标题字号
 //文字颜色配对
-$f_normal1: #ffffff;    //正常颜色
-$f_active1: #c3c3c3;    //active样式
-$f_hover1: #000000;     //hover样式
+$fc_normal: #ffffff;    //正常颜色
+$fc_active: #c3c3c3;    //active样式
+$fc_hover: #000000;     //hover样式
+//边框样式
+$bc_normal: #ececec;     //常规边框颜色
 
 ///////////////////
 //添加css3前缀功能//
@@ -23,11 +27,18 @@ $prefix-for-microsoft: true !default;
 $prefix-for-opera: true !default;
 $prefix-for-spec: true !default;
 
-//CSS3生产函数
-//1.$property           属性名：border-radius
-//2.$vale               属性值：10px
-//3.$prefixes           需要添加的浏览器：webkit,moz,ms,o,spec
-//4.$prefix             为$prefixes中每次循环对应的值
+
+
+
+
+
+/*******************************************************
+ *CSS3生产函数
+ *1.$property           属性名：border-radius
+ *2.$vale               属性值：10px
+ *3.$prefixes           需要添加的浏览器：webkit,moz,ms,o,spec
+ *4.$prefix             为$prefixes中每次循环对应的值
+ */
 @mixin prefixer ($property, $value, $prefixes) {
     @each $prefix in $prefixes {
         @if $prefix == webkit and $prefix-for-webkit == true {
@@ -112,5 +123,8 @@ $prefix-for-spec: true !default;
         @media (max-width: 1200px) {
             @content;
         }
+    }
+    @else{
+        @warn "没有 '#{breakPoint}'. 请输入 small mid large 其中任意一种环境";
     }
 }

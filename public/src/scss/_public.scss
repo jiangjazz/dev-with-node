@@ -58,10 +58,58 @@ a,a:hover{color:#333;}
 .f-csm{cursor:move;}
 .f-usn{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none;}
 
+/******************
+ * 引入字体图标文件（目前为在线字体）
+ */
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1452679910_9320827.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1452679910_9320827.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1452679910_9320827.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1452679910_9320827.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1452679910_9320827.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+
+
+
 /**/
 html,body{
     margin:0px;
     height:100%;
     overflow: hidden;
     position: relative;
+}
+
+/**************************
+ * 公共样式
+ */
+//link样式
+%aNav{
+    display: inline-block;
+    padding: 0 10px;
+    color: $fc_normal;
+    background-color: $bg_nav;
+    &.active{
+        color: $fc_active;
+    }
+    &:hover{
+        color: $fc_hover;
+        background-color: $bg_navHover;
+    }
+}
+
+/******************************
+ * 通用样式
+ */
+//单块文本样式
+.i-block{
+    background-color: #fff;
+    @include border-radius(3px);
+    @include box-shadow(1px 3px 5px 0px #bbb);
+}
+//文本容器样式
+.i-word{
+    padding: .5em 1em;
+    font-size: $fs_normal;
 }

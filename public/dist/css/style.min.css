@@ -1,4 +1,11 @@
 @charset "UTF-8";
+/*******************************************************
+ *CSS3生产函数
+ *1.$property           属性名：border-radius
+ *2.$vale               属性值：10px
+ *3.$prefixes           需要添加的浏览器：webkit,moz,ms,o,spec
+ *4.$prefix             为$prefixes中每次循环对应的值
+ */
 /*响应式*/
 /* reset */
 html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend, input, button, textarea, menu {
@@ -252,6 +259,16 @@ a, a:hover {
   user-select: none;
 }
 
+/******************
+ * 引入字体图标文件（目前为在线字体）
+ */
+@font-face {
+  font-family: 'iconfont';
+  src: url("//at.alicdn.com/t/font_1452679910_9320827.eot");
+  /* IE9*/
+  src: url("//at.alicdn.com/t/font_1452679910_9320827.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1452679910_9320827.woff") format("woff"), url("//at.alicdn.com/t/font_1452679910_9320827.ttf") format("truetype"), url("//at.alicdn.com/t/font_1452679910_9320827.svg#iconfont") format("svg");
+  /* iOS 4.1- */
+}
 /**/
 html, body {
   margin: 0px;
@@ -260,6 +277,9 @@ html, body {
   position: relative;
 }
 
+/**************************
+ * 公共样式
+ */
 .m-topNavGroup a {
   display: inline-block;
   padding: 0 10px;
@@ -274,6 +294,33 @@ html, body {
   background-color: #ffffff;
 }
 
+/******************************
+ * 通用样式
+ */
+.i-block {
+  background-color: #fff;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 3px 5px 0px #bbb;
+  box-shadow: 1px 3px 5px 0px #bbb;
+}
+
+.i-word {
+  padding: .5em 1em;
+  font-size: 12px;
+}
+
+/*******************************
+ * 组件样式
+ */
+.u-title {
+  padding: .5em 1em;
+  border-bottom: 1px solid #ececec;
+  font-size: 14px;
+}
+
+/****************
+ * 布局模块样式
+ */
 .m-topNavGroup {
   height: 60px;
   line-height: 60px;
@@ -370,4 +417,5 @@ html, body {
   right: 0;
   bottom: 0;
   left: 0;
+  background-color: #f1f1f1;
 }

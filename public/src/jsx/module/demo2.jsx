@@ -14,7 +14,6 @@ var page = function(){
     //具体产品
     var Product = React.createClass({
         render: function(){
-            console.log(this.state);
             return (
                 <div className="products">
                     <span>{this.props.product.name}</span>&nbsp;
@@ -54,10 +53,23 @@ var page = function(){
                 'promptMsg': '请输入搜索关键字'
             };
         },
+        inpChange: function(){
+            var input = this.refs.searchInp,
+                state = {
+                    'filterText': input.value
+                };
+            this.props.onUserInput(state);
+        },
         render: function(){
             return (
                 <div className="searchBar">
-                    <input name={this.props.searchName} type="search" placeholder='请输入搜索关键字' />
+                    <input
+                        name = {this.props.searchName}
+                        type = "search"
+                        placeholder = '请输入搜索关键字'
+                        ref = 'searchInp'
+                        onChange = {this.inpChange}
+                        value = {this.props.filterText} />
                 </div>
                 );
         }
@@ -70,12 +82,22 @@ var page = function(){
                 'inStockOnly': false
             };
         },
+        handleUserInput: function(state){
+            this.setState({
+                'filterText': state.filterText
+            });
+        },
         render: function(){
             var categoryObj = {},
-                row = [];
+                row = [],
+                filterText = this.state.filterText,
+                pattern = new RegExp(filterText, 'i'),
+                inStockOnly = this.state.inStockOnly;
+
+            //console.log(this.state.filterText);
             //按category分类,获得新的分组数据
             this.props.products.forEach(function(product) {
-                if(product.name.indexOf(this.state.filterText) === -1){
+                if(!pattern.test(product.name)){
                     return;
                 }
                 if (!categoryObj[product.category]) {
@@ -84,12 +106,15 @@ var page = function(){
                 categoryObj[product.category].push(product);
             });
             for(var obj in categoryObj){
-                if(this.state.inStockOnly && categoryObj[obj].stocked){}
+                if(inStockOnly && categoryObj[obj].stocked){}
                 row.push(<ResultGroup key={obj} products={categoryObj[obj]}/>);
             }
             return (
                 <div className={this.props.class}>
-                    <SearchBar filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} />
+                    <SearchBar
+                        filterText={filterText}
+                        inStockOnly={inStockOnly}
+                        onUserInput={this.handleUserInput} />
                     {row}
                 </div>
                 );

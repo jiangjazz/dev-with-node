@@ -1,0 +1,116 @@
+@charset "utf-8";
+//皮肤
+$bg: #646262;  //背景色皮肤
+$bgHover: #ffffff;   //hover背景色
+
+//字号大小
+$f_normal: 12px;    //正常字号
+$f_h1: 32px;    //最大标题、logo等
+$f_nav: 20px;       //导航字号
+//文字颜色配对
+$f_normal1: #ffffff;    //正常颜色
+$f_active1: #c3c3c3;    //active样式
+$f_hover1: #000000;     //hover样式
+
+///////////////////
+//添加css3前缀功能//
+//////////////////
+
+//定义存在的浏览器前缀
+$prefix-for-webkit: true !default;
+$prefix-for-mozilla: true !default;
+$prefix-for-microsoft: true !default;
+$prefix-for-opera: true !default;
+$prefix-for-spec: true !default;
+
+//CSS3生产函数
+//1.$property           属性名：border-radius
+//2.$vale               属性值：10px
+//3.$prefixes           需要添加的浏览器：webkit,moz,ms,o,spec
+//4.$prefix             为$prefixes中每次循环对应的值
+@mixin prefixer ($property, $value, $prefixes) {
+    @each $prefix in $prefixes {
+        @if $prefix == webkit and $prefix-for-webkit == true {
+            -webkit-#{$property}: $value;
+        }
+        @else if $prefix == moz and $prefix-for-mozilla == true {
+            -moz-#{$property}: $value;
+        }
+        @else if $prefix == ms and $prefix-for-microsoft == true {
+            -ms-#{$property}: $value;
+        }
+        @else if $prefix == o and $prefix-for-opera == true {
+            -o-#{$property}: $value;
+        }
+        @else if $prefix == spec and $prefix-for-spec == true {
+            #{$property}: $value;
+        }
+    }
+}
+//盒子阴影
+@mixin box-shadow($value) {
+    @include prefixer(box-shadow, $value, webkit spec);
+}
+//文字阴影
+@mixin text-shadow($value) {
+    @include prefixer(text-shadow, $value, webkit spec);
+}
+//圆角
+@mixin border-radius($value){
+    @include prefixer(border-radius, $value, spec);
+}
+//转换
+@mixin transform($value){
+    @include prefixer(transform, $value, webkit moz ms o spec);
+}
+//设置转换原点
+@mixin transform-origin($value){
+    @include prefixer(transform-origin, $value, webkit moz ms o spec)
+}
+//过渡
+@mixin transition($value){
+    @include prefixer(transition, $value, webkit moz ms o spec);
+}
+//盒子模型
+@mixin box-sizing($value){
+    @include prefixer(box-sizing, $value, webkit moz spec);
+}
+//动画
+@mixin animation($value){
+    @include prefixer(animation, $value, webkit moz ms o spec);
+}
+//兼容透明度
+@mixin opacity($value){
+    opacity: $value / 100;
+    filter : alpha(opacity=$value);
+}
+
+
+
+//布局
+@mixin absolute($top, $right, $bottom, $left){
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+/*响应式*/
+@mixin media($breakPoint){
+    @if $breakPoint == "small"{
+        @media (max-width: 767px) {
+            @content;
+        }
+    }
+    @else if $breakPoint == "mid"{
+        @media (max-width: 992px) {
+            @content;
+        }
+    }
+    @else if $breakPoint == "large"{
+        @media (max-width: 1200px) {
+            @content;
+        }
+    }
+}

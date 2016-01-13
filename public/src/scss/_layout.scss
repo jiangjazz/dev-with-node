@@ -1,0 +1,96 @@
+@charset 'utf-8';
+%aNav{
+    display: inline-block;
+    padding: 0 10px;
+    color: $f_normal1;
+    background-color: $bg;
+    &.active{
+        color: $f_active1;
+    }
+    &:hover{
+        color: $f_hover1;
+        background-color: $bgHover;
+    }
+}
+//头部导航模块
+.m-topNavGroup{
+    height: 60px;
+    line-height: 60px;
+    font-size: $f_nav;
+    background-color: $bg;
+    @include absolute(0, 0, auto, 0);
+    .logo{
+        margin-left: 10px;
+        min-width: 25%;
+        letter-spacing: 4px;
+        color: $f_normal1;
+        font-size: $f_h1*1.2;
+        font-style: italic;
+        font-family: "Arial";
+        font-weight: bold;
+    }
+    .header-collaspe{
+        display: none;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        cursor: pointer;
+        .bars{
+            display: block;
+            margin: 5px 0;
+            height: 5px;
+            background-color: $bgHover;
+            @include border-radius(3px);
+        }
+    }
+    .header-collgroup{
+        height: 0;
+        border: none;
+        overflow: hidden;
+        @include transition(all .5s ease);
+        nav{
+            display: block;
+        }
+        a{
+            display: block;
+            @include transition(all .3s ease);
+        }
+    }
+    >nav{
+        margin: 0 20px 0 40px;
+        float: left;
+    }
+    a{
+        @extend %aNav;
+    }
+    @include media(large){
+        >nav{
+            display: none;
+        }
+        .header-collaspe{
+            display: block;
+        }
+        .header-collgroup{
+            margin: 0;
+            width: 100%;
+            position: absolute;
+            top: 62px;
+            left: 0;
+            z-index: 9999;
+            &.active{
+                height: 182px;
+            }
+            nav{
+                display: block;
+                border: 1px solid $bg;
+                @include box-sizing(border-box);
+            }
+        }
+    }
+}
+.m-content{
+    padding: 40px 20px;
+    @include absolute(60px, 0, 0, 0);
+}

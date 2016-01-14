@@ -1,15 +1,4 @@
-var component = require('./component.jsx');
-    //checkbox = component.checkbox;
-
-console.log(component);
-$(function(){
-    //checkbox(document.querySelector('.checkbox'));
-
-});
-
-
-
-
+//demo4
 var page = function(){
     //基础组件块
     var MyComponent = React.createClass({
@@ -51,5 +40,5 @@ var page = function(){
 
 
 //依据模块加载
-document.querySelector('.demo3-module') && page();
-module.export = function(){};
+document.querySelector('.demo4-module') && page();
+module.exports = function(){};

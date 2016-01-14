@@ -58,20 +58,6 @@ a,a:hover{color:#333;}
 .f-csm{cursor:move;}
 .f-usn{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none;}
 
-/******************
- * 引入字体图标文件（目前为在线字体）
- */
-@font-face {
-  font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_1452679910_9320827.eot'); /* IE9*/
-  src: url('//at.alicdn.com/t/font_1452679910_9320827.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/font_1452679910_9320827.woff') format('woff'), /* chrome、firefox */
-  url('//at.alicdn.com/t/font_1452679910_9320827.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('//at.alicdn.com/t/font_1452679910_9320827.svg#iconfont') format('svg'); /* iOS 4.1- */
-}
-
-
-
 
 /**/
 html,body{
@@ -104,6 +90,8 @@ html,body{
  */
 //单块文本样式
 .i-block{
+    margin: 20px;
+    padding: 15px 20px;
     background-color: #fff;
     @include border-radius(3px);
     @include box-shadow(1px 3px 5px 0px #bbb);

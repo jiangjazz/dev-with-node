@@ -17,4 +17,6 @@ $(function(){
 
 
 //暴露接口
-module.export = function(){};
+module.exports = function(){
+    console.log('layout.js');
+};

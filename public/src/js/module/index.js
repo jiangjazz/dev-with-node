@@ -1,4 +1,4 @@
-
+require('./layout.js')();
 
 
 module.exports = function(){

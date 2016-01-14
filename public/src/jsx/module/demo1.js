@@ -62,4 +62,4 @@ var page = function(){
 //依据模块加载
 document.querySelector('.demo-module') && page();
 
-module.export = function(){};
+module.exports = function(){};

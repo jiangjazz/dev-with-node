@@ -21,9 +21,18 @@ exports.demo2 = function(req, res){
     res.write(page);
     res.end();
 };
+
 exports.demo3 = function(req, res){
     console.log('demo3');
     page = fs.readFileSync('public/views/demo/demo3.html');
+    res.writeHead(200, {'content-Type': 'text/html'});
+    res.write(page);
+    res.end();
+};
+
+exports.demo4 = function(req, res){
+    console.log('demo4');
+    page = fs.readFileSync('public/views/demo/demo4.html');
     res.writeHead(200, {'content-Type': 'text/html'});
     res.write(page);
     res.end();
